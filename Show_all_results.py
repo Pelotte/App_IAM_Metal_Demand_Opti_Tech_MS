@@ -49,32 +49,32 @@ base_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_
 
 # Define legends for each figure type
 legends = {
-    "Resource": "Global cumulated metal demand from 2020 to 2050 per metal and economic sector aggregates,
+    "Resource": """Global cumulated metal demand from 2020 to 2050 per metal and economic sector aggregates,
 compared to estimated reserves and resources. The identified resources are normalized at 1
 (=100%) and normalized metal demand and reserves are calculated as a fraction of resources. For
 power plants, EVs and the electric grid, the pastel colors represent the initial IAM demands, while
 the hatched parts represent a decrease and the darker colors an increase in metal demand because of
 the optimization of technological market shares. In grey are the demands that are identical between
-both scenarios.",
-    "Mining": "Global yearly metal demand from 2020 to 2050 by economic sector, compared to mining
+both scenarios.""",
+    "Mining": """Global yearly metal demand from 2020 to 2050 by economic sector, compared to mining
 capacity. For power plant, EV and grid, pastel colors represent initial demand, while the hatched part
 represents a decrease and the darker color an increase in metal demand because of the optimization
 of technological market shares. Primary mining capacity is represented by an noncontinuous line.
 For metals used in EV, mining capacity includes secondary production from the EV sector, with a
-division between the one from the initial scenario (red) and the optimization scenario (dark red).",
-"PowerComparison": "Comparison of the market share mix of cumulated installed power capacities required to meet
+division between the one from the initial scenario (red) and the optimization scenario (dark red).""",
+"PowerComparison": """Comparison of the market share mix of cumulated installed power capacities required to meet
 the power plant demand projected by the chosen model and scenario. On the left, the initial market
 share mix based on IMAGE’s power plant mix estimates and the most likely sub-technological market
 shares from the literature. On the right, the optimized market shares of power plant sources, designed
 to avoid exceeding material constraints. The total installed power capacity varies between the initial
 and optimized scenario since the energy output of 1 gigawatt (GW) depends on the capacity factor
-of each technology.",
-    "MotorComparison": "Comparison of the market share mix of EVs motors required to meet the light duty vehicle
+of each technology.""",
+    "MotorComparison": """Comparison of the market share mix of EVs motors required to meet the light duty vehicle
 (LDV) demand projected by the chosen model and scenario, combined with the estimated share
 of EVs from the announced pledges IEA scenario. On the left, the initial market share mix based on
 the most likely sub-technological market shares from the literature, assuming 100% copper wiring in
 motors. On the right, the optimized market shares of engines, designed to avoid exceeding material
-constraints, with the potential substitution of copper by aluminum in motor wiring.",
+constraints, with the potential substitution of copper by aluminum in motor wiring.""",
     
     "BatteryComparison": "Comparison of the market share mix of batteries in EVs required to meet the light duty
 vehicle demand projected by the chosen model and scenario, combined with the estimated share of
