@@ -53,12 +53,18 @@ for title, cfg in zip_configs.items():
         st.warning(f"Cannot open {cfg['zip_name']}: {e}")
         continue
 
-    # List files in the zip
     all_files = zip_file.namelist()
-    expected_filename = f"{title}_images/Fig_{title}Comparison_{model} - {scenario}.png"
+    expected_file_suffix = f"Fig_{title}Comparison_{model} - {scenario}.png"
 
-    if expected_filename in all_files:
-        with zip_file.open(expected_filename) as file:
+    # Search for the file in the zip regardless of folder structure
+    found_file = None
+    for f in all_files:
+        if f.replace("\\","/").endswith(expected_file_suffix):  # handles Windows vs Unix slashes
+            found_file = f
+            break
+
+    if found_file:
+        with zip_file.open(found_file) as file:
             image = Image.open(file)
             st.image(image, caption=f"{model} - {scenario}", use_container_width=True)
     else:
