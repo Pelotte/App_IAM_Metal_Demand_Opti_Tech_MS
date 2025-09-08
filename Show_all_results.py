@@ -22,9 +22,9 @@ scenario = st.selectbox("Choose an SSP scenario:", listScenarios)
 
 # --- 3️⃣ Define zip files for each category ---
 zip_configs = {
-    "Motor": {"zip_name": "Motor_images.zip", "from_github": True},
-    "Power": {"zip_name": "Power_images.zip", "from_github": True},
-    "Battery": {"zip_name": "Battery_images.zip", "from_github": True},
+    "MotorComparison": {"zip_name": "Motor_images.zip", "from_github": True},
+    "PowerComparison": {"zip_name": "Power_images.zip", "from_github": True},
+    "BatteryComparison": {"zip_name": "Battery_images.zip", "from_github": True},
     "Resource": {"zip_name": "Resource_images.zip", "from_github": False},  # LFS, use local
     "Mining": {"zip_name": "Mining_images.zip", "from_github": False}       # LFS, use local
 }
@@ -54,7 +54,7 @@ for title, cfg in zip_configs.items():
         continue
 
     all_files = zip_file.namelist()
-    expected_file_suffix = f"Fig_{title}Comparison_{model} - {scenario}.png"
+    expected_file_suffix = f"Fig_{title}_{model} - {scenario}.png"
 
     # Search for the file in the zip regardless of folder structure
     found_file = None
