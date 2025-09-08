@@ -22,7 +22,9 @@ scenario = st.selectbox("Choose an SSP scenario:", listScenarios)
 zip_configs = {
     "Motor": "Motor_images.zip",
     "Power": "Power_images.zip",
-    "Battery": "Battery_images.zip"
+    "Battery": "Battery_images.zip",
+    "Resource": "Resource_images.zip",
+    "Mining": "Mining_images.zip"
 }
 
 # Base URL raw GitHub
