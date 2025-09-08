@@ -42,7 +42,7 @@ zip_configs = {
     "Mining": {"zip_name": "Mining_images.zip", "from_github": False},       # LFS, use local
     "PowerComparison": {"zip_name": "Power_images.zip", "from_github": True},
     "MotorComparison": {"zip_name": "Motor_images.zip", "from_github": True},
-    "BatteryComparison": {"zip_name": "Battery_images.zip", "from_github": True    
+    "BatteryComparison": {"zip_name": "Battery_images.zip", "from_github": True}
 }
 
 base_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_Tech_MS/main"
