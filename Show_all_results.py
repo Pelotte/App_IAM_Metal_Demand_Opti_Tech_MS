@@ -1,30 +1,36 @@
 import streamlit as st
 from PIL import Image
-import os
 import pandas as pd
-import requests   # <-- this was missing!
+import requests
 from io import BytesIO
+from zipfile import ZipFile
 
 # App title
 st.title("Visualize the results for a specific model and scenario")
 
-# Base URL for your GitHub repository (raw content)
-base_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_Tech_MS/main"
-
-# Load the study scope Excel file directly from GitHub
-scope_url = f"{base_url}/Scope of the study.xlsx"
-r = requests.get(scope_url)
+# --- 1️⃣ Load the Excel study scope from GitHub ---
+excel_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_Tech_MS/main/Scope of the study.xlsx"
+r = requests.get(excel_url)
 r.raise_for_status()
 with BytesIO(r.content) as file:
-    with pd.ExcelFile(file) as xls:
+    with pd.ExcelFile(file, engine="openpyxl") as xls:
         listModels = pd.read_excel(xls, 'model', index_col=0).squeeze().tolist()
         listScenarios = pd.read_excel(xls, 'scenario', index_col=0).squeeze().tolist()
-        
-# Select model and scenario
-model = st.selectbox("Choose a model:", listModels)
-scenario = st.selectbox("Choose an ssp scenario:", listScenarios)
 
-# Define the figures to load
+# --- 2️⃣ Select model and scenario ---
+model = st.selectbox("Choose a model:", listModels)
+scenario = st.selectbox("Choose an SSP scenario:", listScenarios)
+
+# --- 3️⃣ Load images zip from GitHub ---
+zip_url = "https://github.com/Pelotte/App_IAM_Metal_Demand_Opti_Tech_MS/raw/main/Images.zip"
+r = requests.get(zip_url)
+r.raise_for_status()
+zip_file = ZipFile(BytesIO(r.content))
+
+# List all files in the zip
+all_files = zip_file.namelist()
+
+# --- 4️⃣ Define the images configuration ---
 image_configs = {
     "Comparing cumulated demand to resources and reserves": {
         "folder": "Resource_images",
@@ -48,19 +54,14 @@ image_configs = {
     }
 }
 
-# Loop over figures
+# --- 5️⃣ Loop over images and display ---
 for title, cfg in image_configs.items():
     st.subheader(title)
-    img_url = f"{base_url}/{cfg['folder']}/{cfg['filename']}"
-    try:
-        response = requests.get(img_url)
-        if response.status_code == 200:
-            image = Image.open(BytesIO(response.content))
-            st.image(image, caption=f"{model} - {scenario}", use_container_width=True)
-        else:
-            st.warning(f"No existing figure in {title} for {model} - {scenario}")
-    except Exception as e:
-        st.error(f"Error loading image {cfg['filename']}: {e}")
-
-
-
+    image_path = f"{cfg['folder']}/{cfg['filename']}"
+    
+    if image_path in all_files:
+        with zip_file.open(image_path) as file:
+            image = Image.open(file)
+            st.image(image, caption=f"{model} - {scenario}", use_column_width=True)
+    else:
+        st.warning(f"No existing figure in {title} for {model} - {scenario}")
