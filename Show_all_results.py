@@ -47,6 +47,6 @@ for title, zip_name in zip_configs.items():
     if expected_filename in all_files:
         with zip_file.open(expected_filename) as file:
             image = Image.open(file)
-            st.image(image, caption=f"{model} - {scenario}", use_column_width=True)
+            st.image(image, caption=f"{model} - {scenario}", use_container_width=True)
     else:
         st.warning(f"No image found in {zip_name} for {model} - {scenario}")
