@@ -25,7 +25,7 @@ zip_configs = {
     "Motor": {"zip_name": "Motor_images.zip", "from_github": True},
     "Power": {"zip_name": "Power_images.zip", "from_github": True},
     "Battery": {"zip_name": "Battery_images.zip", "from_github": True},
-    "Resource": {"zip_name": "Resource_images/Resource_images.zip", "from_github": False},  # LFS, use local
+    "Resource": {"zip_name": "Resource_images.zip", "from_github": False},  # LFS, use local
     "Mining": {"zip_name": "Mining_images.zip", "from_github": False}       # LFS, use local
 }
 
@@ -46,7 +46,7 @@ for title, cfg in zip_configs.items():
         else:
             # Resource and Mining: use local LFS files
             if not os.path.exists(cfg['zip_name']):
-                st.warning(f"{cfg['zip_name']} not found locally. Make sure to run 'git lfs pull' and include it in the repo.")
+                st.warning(f"{cfg['zip_name']} not found locally.")
                 continue
             zip_file = ZipFile(cfg['zip_name'])
     except Exception as e:
