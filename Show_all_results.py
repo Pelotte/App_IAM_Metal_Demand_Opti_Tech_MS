@@ -105,20 +105,20 @@ for title, cfg in zip_configs.items():
     all_files = zip_file.namelist()
     expected_file_suffix = f"Fig_{title}_{model} - {scenario}.png"
 
-    found_file = None
-    for f in all_files:
-        if f.replace("\\","/").endswith(expected_file_suffix):
-            found_file = f
-            break
+    # Check if the expected file exists first
+    file_exists = any(f.replace("\\","/").endswith(expected_file_suffix) for f in all_files)
 
-    if found_file:
-        with zip_file.open(found_file) as file:
-            image = Image.open(file)
-            st.image(image, caption=f"{model} - {scenario}", use_container_width=True)
-        # Add legend under the figure
-        legend_text = legends.get(title, "")
-        if legend_text:
-            st.caption(legend_text)
-    else:
-        st.warning(f"No image found in {cfg['zip_name']} for {model} - {scenario}")
+    if not file_exists:
+        st.warning(f"No image found in {cfg['zip_name']} for model '{model}' and scenario '{scenario}'.")
+        continue  # Skip to next zip
+
+    # If exists, open and display
+    found_file = next(f for f in all_files if f.replace("\\","/").endswith(expected_file_suffix))
+    with zip_file.open(found_file) as file:
+        image = Image.open(file)
+        st.image(image, caption=f"{model} - {scenario}", use_container_width=True)
+    legend_text = legends.get(title, "")
+    if legend_text:
+        st.caption(legend_text)
+
 
