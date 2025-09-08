@@ -2,6 +2,8 @@ import streamlit as st
 from PIL import Image
 import os
 import pandas as pd
+import requests   # <-- this was missing!
+from io import BytesIO
 
 # App title
 st.title("Visualize the results for a specific model and scenario")
@@ -11,12 +13,12 @@ base_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_
 
 # Load the study scope Excel file directly from GitHub
 scope_url = f"{base_url}/Scope of the study.xlsx"
-with requests.get(scope_url) as r:
-    r.raise_for_status()
-    with BytesIO(r.content) as file:
-        with pd.ExcelFile(file) as xls:
-            listModels = pd.read_excel(xls, 'model', index_col=0).squeeze().tolist()
-            listScenarios = pd.read_excel(xls, 'scenario', index_col=0).squeeze().tolist()
+r = requests.get(scope_url)
+r.raise_for_status()
+with BytesIO(r.content) as file:
+    with pd.ExcelFile(file) as xls:
+        listModels = pd.read_excel(xls, 'model', index_col=0).squeeze().tolist()
+        listScenarios = pd.read_excel(xls, 'scenario', index_col=0).squeeze().tolist()
         
 # Select model and scenario
 model = st.selectbox("Choose a model:", listModels)
