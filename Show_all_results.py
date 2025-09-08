@@ -25,7 +25,7 @@ zip_configs = {
     "Motor": {"zip_name": "Motor_images.zip", "from_github": True},
     "Power": {"zip_name": "Power_images.zip", "from_github": True},
     "Battery": {"zip_name": "Battery_images.zip", "from_github": True},
-    "Resource": {"zip_name": "Resource_images.zip", "from_github": False},  # LFS, use local
+    "Resource": {"zip_name": "Resource_images/Resource_images.zip", "from_github": False},  # LFS, use local
     "Mining": {"zip_name": "Mining_images.zip", "from_github": False}       # LFS, use local
 }
 
