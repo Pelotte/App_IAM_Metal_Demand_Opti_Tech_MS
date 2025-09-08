@@ -21,7 +21,7 @@ scenario = st.selectbox("Choose an SSP scenario:", listScenarios)
 # --- 3️⃣ Define zip files for each image category ---
 zip_configs = {
     "Motor": "Motor_images.zip",
-    "Power": "Power": "Power_images.zip",
+    "Power": "Power_images.zip",
     "Battery": "Battery_images.zip"
 }
 
