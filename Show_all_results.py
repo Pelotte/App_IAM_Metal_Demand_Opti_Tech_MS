@@ -71,13 +71,13 @@ and optimized scenario since the energy output of 1 gigawatt (GW) depends on the
 of each technology.""",
     "MotorComparison": """Comparison of the market share mix of EVs motors required to meet the light duty vehicle
 (LDV) demand projected by the chosen model and scenario, combined with the estimated share
-of EVs from the announced pledges IEA scenario. On the left, the initial market share mix based on
+of EVs from IEA's scenario. On the left, the initial market share mix based on
 the most likely sub-technological market shares from the literature, assuming 100% copper wiring in
 motors. On the right, the optimized market shares of engines, designed to avoid exceeding material
 constraints, with the potential substitution of copper by aluminum in motor wiring.""",
     "BatteryComparison": """Comparison of the market share mix of batteries in EVs required to meet the light duty
 vehicle demand projected by the chosen model and scenario, combined with the estimated share of
-EVs from the Announced Pledges IEA Scenario (APS). On the left, the initial market share mix based
+EVs from IEA's scenario. On the left, the initial market share mix based
 on the most likely sub-technological market shares from the literature. On the right, the optimized
 market share of batteries, designed to avoid exceeding material constraints."""
 }
