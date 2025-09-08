@@ -110,9 +110,10 @@ for title, cfg in zip_configs.items():
 
     if not file_exists:
         st.warning(f"No image found in {cfg['zip_name']} for model '{model}' and scenario '{scenario}'.")
-        continue  # Skip to next zip
+        st.stop()  # Stop the app completely
 
     # If exists, open and display
+    st.subheader(f"{title} Images")
     found_file = next(f for f in all_files if f.replace("\\","/").endswith(expected_file_suffix))
     with zip_file.open(found_file) as file:
         image = Image.open(file)
