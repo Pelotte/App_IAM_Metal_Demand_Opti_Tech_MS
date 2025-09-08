@@ -36,6 +36,8 @@ with BytesIO(r.content) as file:
 model = st.selectbox("Choose a model:", listModels)
 scenario = st.selectbox("Choose an SSP scenario:", listScenarios)
 
+base_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_Tech_MS/main"
+
 # Define zip files for each category
 zip_configs = {
     "Resource": {"zip_name": "Resource_images.zip", "from_github": False},  # LFS, use local
@@ -45,7 +47,13 @@ zip_configs = {
     "BatteryComparison": {"zip_name": "Battery_images.zip", "from_github": True}
 }
 
-base_url = "https://raw.githubusercontent.com/Pelotte/App_IAM_Metal_Demand_Opti_Tech_MS/main"
+display_titles = {
+    "Resource": "Cumulated metal demand vs Reserves and resources",
+    "Mining": "Annual metal demand vs Refinery capacity",
+    "PowerComparison": "Power Plant Market Shares",
+    "MotorComparison": "EV Motor Market Shares",
+    "BatteryComparison": "EV Battery Market Shares"
+}
 
 # Define legends for each figure type
 legends = {
@@ -112,7 +120,7 @@ for title, cfg in zip_configs.items():
         st.stop()  # Stop the app completely
 
     # If exists, open and display
-    st.subheader(f"{title} Images")
+    st.subheader(display_titles.get(title, title))
     found_file = next(f for f in all_files if f.replace("\\","/").endswith(expected_file_suffix))
     with zip_file.open(found_file) as file:
         image = Image.open(file)
